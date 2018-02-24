@@ -24,6 +24,9 @@ simple.elf: $(OBJ)
 gdb: simple.elf
 	$(GDB) --tui --silent -ex "target extended-remote :$(PORT)" -ex "layout regs" -ex "load" $<
 
+gdb-jlink: simple.elf
+	$(GDB) --tui --silent -x openocd-jlink.gdb $<
+
 .PHONY: dump
 dump:
 	$(OBJDUMP) -D simple.elf
