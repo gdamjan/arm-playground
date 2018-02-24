@@ -1,14 +1,21 @@
 PORT = 1234
 
-simple.elf: simple.o
-	arm-none-eabi-ld -T stm32ram.ld $< -o $@ -g
+CROSS_COMPILE = arm-none-eabi-
+OBJDUMP = $(CROSS_COMPILE)objdump
+GDB = $(CROSS_COMPILE)gdb
+AS = $(CROSS_COMPILE)as
+LD = $(CROSS_COMPILE)ld
+CC = $(CROSS_COMPILE)gcc
 
-simple.o: simple.as
-	arm-none-eabi-as --warn --fatal-warnings -mcpu=cortex-m3 $< -o $@ -g
+simple.elf: simple.o
+	$(LD) -T stm32ram.ld $< -o $@ -g
+
+simple.o: simple.S
+	$(AS) --warn --fatal-warnings -mcpu=cortex-m3 $< -o $@ -g
 
 .PHONY: dump
 dump:
-	arm-none-eabi-objdump -D simple.elf
+	$(OBJDUMP) -D simple.elf
 
 .PHONY: stlink
 stlink:
@@ -16,7 +23,7 @@ stlink:
 
 .PHONY: gdb
 gdb: simple.elf
-	arm-none-eabi-gdb --tui --silent -ex "target extended-remote :$(PORT)" -ex "layout regs" -ex "load" $<
+	$(GDB) --tui --silent -ex "target extended-remote :$(PORT)" -ex "layout regs" -ex "load" $<
 
 .PHONY: clean
 clean:

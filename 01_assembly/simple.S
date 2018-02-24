@@ -8,8 +8,9 @@
     .word       _memory_fault + 1
     .word       _bus_fault + 1
     .word       _usage_fault + 1
-    .text
-    .global _start
+
+.text
+.global _start
 
 _start:
     mov r2, #3
