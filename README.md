@@ -30,5 +30,5 @@ the goal is to:
 * [http://electronut.in/stm32-start/]
 * [https://electronics.stackexchange.com/questions/27594/]
 * [https://en.wikipedia.org/wiki/List_of_ARM_Cortex-M_development_tools#C/C++_software_libraries]
-* [https://blog.aignacio.com/2017/07/03/http-wiki-stm32duino-com-index-php-title-blue_pill/]
+* [https://blog.aignacio.com/http-wiki-stm32duino-com-index-php-title-blue_pill/]
 * [https://github.com/satoshinm/pill_blink/]
